@@ -2,18 +2,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.deals import router as deals_router
 
-app = FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "https://yangzhe.github.io",
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 app = FastAPI(
     title="North America Deal Radar API",
     description="加拿大/美国品牌官网折扣雷达 API",
@@ -22,13 +10,17 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "https://yangzhe.github.io",
+        "http://localhost:5173",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 app.include_router(deals_router)
+
 
 @app.get("/")
 def root():
