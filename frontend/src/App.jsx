@@ -3,15 +3,23 @@ import "./App.css";
 
 function App() {
   const [deals, setDeals] = useState([]);
+  
+ useEffect(() => {
+  console.log("API URL:", import.meta.env.VITE_API_BASE_URL);
 
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/deals")
-      .then((response) => response.json())
-      .then((data) => {
-        setDeals(data);
-      });
-  }, []);
+  fetch(`${import.meta.env.VITE_API_BASE_URL}/api/deals`)
+    .then((response) => {
+      console.log("Status:", response.status);
+      console.log("URL:", response.url);
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Deals:", data);
+      setDeals(data);
+    });
+}, []);
 
+  
   return (
     <div className="app">
       <header className="header">
