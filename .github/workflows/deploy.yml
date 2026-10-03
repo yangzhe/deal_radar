@@ -36,7 +36,7 @@ jobs:
       - name: Build
         working-directory: frontend
         env:
-          VITE_API_BASE_URL: http://127.0.0.1:8000
+          VITE_API_BASE_URL: https://deal-radar-xzqb.onrender.com
         run: npm run build
 
       - name: Setup Pages
